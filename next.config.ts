@@ -1,18 +1,30 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  images: {
-    domains: ["83eeq32jm8.ufs.sh"],
-  },
   webpack: (config, { isServer }) => {
     if (!isServer) {
-      config.resolve.fallback = {
-        ...config.resolve.fallback,
-        crypto: require.resolve("crypto-browserify"),
+      config.resolve = {
+        ...config.resolve,
+        fallback: {
+          ...config.resolve?.fallback,
+          crypto: require.resolve("crypto-browserify"),
+          stream: require.resolve("stream-browserify"),
+          util: require.resolve("util/"),
+          buffer: require.resolve("buffer/"),
+        },
       };
+
+      config.plugins = [
+        ...(config.plugins || []),
+        require("webpack").ProvidePlugin({
+          Buffer: ["buffer", "Buffer"],
+        }),
+      ];
     }
     return config;
+  },
+  images: {
+    domains: ["83eeq32jm8.ufs.sh"],
   },
 };
 
