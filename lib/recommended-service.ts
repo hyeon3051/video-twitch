@@ -1,3 +1,5 @@
+"use server";
+
 import { db } from "@/lib/db";
 import { getSelf } from "./auth-service";
 import { User } from "@prisma/client";
@@ -11,7 +13,7 @@ export const getRecommended = async () => {
     userId = null;
   }
 
-  let users: User[] = [];
+  let users = [];
 
   if (userId) {
     users = await db.user.findMany({

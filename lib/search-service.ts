@@ -1,3 +1,5 @@
+"use server";
+
 import { db } from "@/lib/db";
 import { getSelf } from "@/lib/auth-service";
 import { Stream } from "@prisma/client";
@@ -11,7 +13,7 @@ export const getSearchResults = async (term: string) => {
     userId = null;
   }
 
-  let streams: Stream[] = [];
+  let streams = [];
   if (userId) {
     streams = await db.stream.findMany({
       where: {

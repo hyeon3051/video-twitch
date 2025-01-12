@@ -1,3 +1,5 @@
+"use client";
+
 import { Wrapper } from "./wrapper";
 import { Toggle } from "./toggle";
 import { Navigation } from "./navigation";

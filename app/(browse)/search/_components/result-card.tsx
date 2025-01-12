@@ -1,3 +1,5 @@
+"use client";
+
 import { Thumbnail } from "@/components/thumbnail";
 import { Skeleton } from "@/components/ui/skeleton";
 import { formatDistanceToNow } from "date-fns";

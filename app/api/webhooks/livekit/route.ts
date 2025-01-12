@@ -7,7 +7,7 @@ const receiver = new WebhookReceiver(
   process.env.LIVE_API_SECRET!
 );
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   try {
     const body = await req.text();
     const headerPayload = await headers();

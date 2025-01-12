@@ -1,3 +1,5 @@
+"use client";
+
 import { Stream, User } from "@prisma/client";
 import Link from "next/link";
 import { Thumbnail, ThumbnailSkeleton } from "@/components/thumbnail";

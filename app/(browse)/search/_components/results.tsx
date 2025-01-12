@@ -1,8 +1,10 @@
+"use client";
+
 import { Skeleton } from "@/components/ui/skeleton";
 import { getSearchResults } from "@/lib/search-service";
 import { ResultCard, ResultCardSkeleton } from "./result-card";
 interface ResultsProps {
-  term?: string;
+  term: string;
 }
 
 export const Results = async ({ term }: ResultsProps) => {

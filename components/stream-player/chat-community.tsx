@@ -40,7 +40,7 @@ export const ChatCommunity = ({
         ?.toLowerCase()
         .includes(debouncedValue.toLowerCase());
     });
-  }, [participants, debouncedValue]);
+  }, [hostName, participants, debouncedValue]);
 
   if (isHidden) {
     return (

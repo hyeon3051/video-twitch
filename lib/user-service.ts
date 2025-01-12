@@ -29,9 +29,7 @@ export const getUserByUserName = async (username: string) => {
     },
   });
 
-  if (!user) return NotFoundPage;
-
-  return user;
+  return user || null;
 };
 
 export const getUserById = async (id: string) => {

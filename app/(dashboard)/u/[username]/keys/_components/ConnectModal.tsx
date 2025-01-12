@@ -20,15 +20,15 @@ import {
 import { Button } from "@/components/ui/button";
 import { Plus, AlertTriangle } from "lucide-react";
 import { createIngress } from "@/actions/ingress";
-import { IngressInput } from "livekit-server-sdk";
+
 import { toast } from "sonner";
-const RTMP = String(IngressInput.RTMP_INPUT);
-const WHIP = String(IngressInput.WHIP_INPUT);
+const RTMP = "0";
+const WHIP = "1";
 
 type IngressType = typeof RTMP | typeof WHIP;
 
 export const ConnectModal = () => {
-  const closeRef = useRef(null);
+  const closeRef = useRef<HTMLButtonElement>(null);
   const [ingressType, setIngressType] = useState<IngressType>(RTMP);
   const [isPending, startTransition] = useTransition();
 

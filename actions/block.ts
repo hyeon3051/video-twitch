@@ -12,33 +12,22 @@ const roomService = new RoomServiceClient(
 );
 
 export const onBlock = async (id: string) => {
-  try {
-    const self = await getSelf();
+  const self = await getSelf();
 
-    let blockedUser;
+  if (self.id == id) return new Error("Cannot block yourself");
 
-    try {
-      await roomService.removeParticipant(self.id, id);
-      blockedUser = await blockUser(id);
-    } catch (error) {
-      throw new Error("internal error");
-    }
-    revalidatePath(`/u/${self.username}/community`);
+  await roomService.removeParticipant(self.id, id);
+  const blockedUser = await blockUser(id);
 
-    return blockedUser;
-  } catch (error) {
-    throw new Error("internal error");
-  }
+  revalidatePath(`/u/${self.username}/community`);
+
+  return blockedUser;
 };
 
 export const onUnblock = async (id: string) => {
-  try {
-    const self = await getSelf();
-    const unblockedUser = await unblockUser(id);
-    revalidatePath("/");
-    revalidatePath(`/u/${self.username}/community`);
-    return unblockedUser;
-  } catch (error) {
-    throw new Error("internal error");
-  }
+  const self = await getSelf();
+  const unblockedUser = await unblockUser(id);
+  revalidatePath("/");
+  revalidatePath(`/u/${self.username}/community`);
+  return unblockedUser;
 };

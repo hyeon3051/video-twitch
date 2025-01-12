@@ -31,7 +31,7 @@ export const Recommended = ({ recommended }: RecommendedProps) => {
             key={user.id}
             username={user.username}
             imageUrl={user.imageUrl || ""}
-            isLive={user.stream?.isLive}
+            isLive={user.stream?.isLive ?? false}
           />
         ))}
       </ul>

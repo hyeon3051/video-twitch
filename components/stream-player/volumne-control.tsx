@@ -27,7 +27,7 @@ export const VolumeControl = ({
   }
 
   const label = isMuted ? "Unmute" : "Mute";
-  const handleChange = (value: number) => {
+  const handleChange = (value: number[]) => {
     onChange(value[0]);
   };
 

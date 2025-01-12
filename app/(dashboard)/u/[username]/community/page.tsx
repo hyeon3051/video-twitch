@@ -6,15 +6,13 @@ import { format } from "date-fns";
 async function getData(): Promise<BlockedUser[]> {
   const blockedUsers = await getBlockedUsers();
 
-  return blockedUsers.map((blockUser) => {
-    return {
-      ...blockUser.blocked,
-      userId: blockUser.blocked.id,
-      imageUrl: blockUser.blocked.imageUrl,
-      username: blockUser.blocked.username,
-      createdAt: format(new Date(blockUser.blocked.createdAt), "yyyy/MM/dd"),
-    };
-  });
+  return blockedUsers.map((blockUser) => ({
+    ...blockUser.blocked,
+    userId: blockUser.blocked.id,
+    imageUrl: blockUser.blocked.imageUrl || "",
+    username: blockUser.blocked.username,
+    createdAt: format(new Date(blockUser.blocked.createdAt), "yyyy/MM/dd"),
+  }));
 }
 
 const CommunityPage = async () => {

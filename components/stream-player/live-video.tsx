@@ -63,7 +63,10 @@ export const LiveVideo = ({ participant }: LiveVideoProps) => {
     setIsFullscreen(isCurrentFullscreen);
   };
 
-  useEventListener("fullscreenchange", handleFullScreenChange, wrapperRef);
+  useEventListener(
+    "fullscreenchange" as keyof WindowEventMap,
+    handleFullScreenChange
+  );
 
   return (
     <div ref={wrapperRef} className="relative h-full flex">
